@@ -5,3 +5,4 @@ Jinja2
 MarkupSafe
 Werkzeug
 numpy
+scikit-learn
