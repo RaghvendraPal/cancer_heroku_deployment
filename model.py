@@ -17,9 +17,9 @@ def data_prediction(data):
     y_pred = rf_model.predict(X_re)
     # print("prediction : ", y_pred)
     if y_pred[0] == 0:
-        return "Benign"
+        return "BENIGN"
     else:
-        return "Malignant"
+        return "MALIGNANT"
 
 
 # dataset = pd.read_csv('hiring.csv')

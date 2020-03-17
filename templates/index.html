@@ -1,65 +1,279 @@
 <!DOCTYPE html>
-<html >
-<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>ML API</title>
-  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+	<title>Cancer Prediction</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<!-- <link rel="icon" type="image/png" href="{{ url_for('static', filename='styles/images/icons/favicon.ico') }}"/> -->
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/vendor/bootstrap/css/bootstrap.min.css') }}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/vendor/animate/animate.css') }}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/vendor/css-hamburgers/hamburgers.min.css') }}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/vendor/animsition/css/animsition.min.css') }}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/vendor/select2/select2.min.css') }}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/vendor/daterangepicker/daterangepicker.css') }}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/css/util.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/css/main.css') }}">
+<!--===============================================================================================-->
 </head>
-
 <body>
- <div class="login">
-	<h1>Cancer Prediction Analysis</h1>
 
-     <!-- Main Input For Receiving Query to our ML -->
-    <form action="{{ url_for('predict')}}" method="post">
-    	  <b>Radius Mean : </b><input type="text" name="radius_mean" placeholder="Radius Mean" required="required" /></br>
-        <b>Texture Mean : </b><input type="text" name="texture_mean" placeholder="Texture Mean" required="required" /></br>
-        <b>Perimeter Mean : </b><input type="text" name="perimeter_mean" placeholder="Perimeter Mean" required="required" /></br>
-        <b>Area Mean : </b><input type="text" name="area_mean" placeholder="Area Mean" required="required" /></br>
-        <b>Smoothness Mean : </b><input type="text" name="smoothness_mean" placeholder="Smoothness Mean" required="required" /></br>
-        <b>Compactness Mean : </b><input type="text" name="compactness_mean" placeholder="Compactness Mean" required="required" /></br>
-        <b>Concavity Mean : </b><input type="text" name="concavity_mean" placeholder="Concavity Mean" required="required" /></br>
-        <b>Concave Point Mean : </b><input type="text" name="concave points_mean" placeholder="Concave Point Mean" required="required" /></br>
-        <b>Symmetry Mean : </b><input type="text" name="symmetry_mean" placeholder="Symmetry Mean" required="required" /></br>
-        <b>Fractal Dimension Mean : </b><input type="text" name="fractal_dimension_mean" placeholder="Fractal Dimension Mean" required="required" /></br>
+
+	<div class="container-contact100">
+		<div class="wrap-contact100">
+			<form action="{{ url_for('predict')}}" class="contact100-form validate-form" method="post">
+				<span class="contact100-form-title">
+					<h2>CANCER PREDICTION</h2>
+        </span>
         
-        <b>Radius SE : </b><input type="text" name="radius_se" placeholder="Radius SE" required="required" /></br>
-        <b>Texture SE : </b><input type="text" name="texture_se" placeholder="Texture SE" required="required" /></br>
-        <b>Perimeter SE : </b><input type="text" name="perimeter_se" placeholder="Perimeter SE" required="required" /></br>
-        <b>Area SE : </b><input type="text" name="area_se" placeholder="Area SE" required="required" /></br>
-        <b>Smoothness SE : </b><input type="text" name="smoothness_se" placeholder="Smoothness SE" required="required" /></br>
-        <b>Compactness SE : </b><input type="text" name="compactness_se" placeholder="Compactness SE" required="required" /></br>
-        <b>Concavity SE : </b><input type="text" name="concavity_se	" placeholder="Concavity SE" required="required" /></br>
-        <b>Concave Point SE : </b><input type="text" name="concave points_se" placeholder="Concave Points SE" required="required" /></br>
-        <b>Symmetry SE : </b><input type="text" name="symmetry_se" placeholder="Symmetry SE" required="required" /></br>
-        <b>Fractal Dimension SE : </b><input type="text" name="fractal_dimension_se" placeholder="Fractal Dimension SE" required="required" /></br>
+        <span class="contact100-form-title"><h5>{{ prediction_text }}</h5></span>
+
+				<div class="wrap-input100 validate-input" data-validate="Radius Mean is required">
+					<span class="label-input100">Radius Mean</span>
+					<input class="input100" type="text" name="radius_mean" placeholder="Enter Radius Mean">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate="Texture Mean is required">
+					<span class="label-input100">Texture Mean</span>
+					<input class="input100" type="text" name="texture_mean" placeholder="Enter Texture Mean">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate="Perimeter Mean is required">
+					<span class="label-input100">Perimeter Mean</span>
+					<input class="input100" type="text" name="perimeter_mean" placeholder="Enter Perimeter Mean">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate="Area Mean is required">
+					<span class="label-input100">Area Mean</span>
+					<input class="input100" type="text" name="area_mean" placeholder="Enter Area Mean">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate="Smoothness Mean is required">
+					<span class="label-input100">Smoothness Mean</span>
+					<input class="input100" type="text" name="smoothness_mean" placeholder="Enter Smoothness Mean">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate="Compactness Mean is required">
+					<span class="label-input100">Compactness Mean</span>
+					<input class="input100" type="text" name="compactness_mean" placeholder="Enter Compactness Mean">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate="Concavity Mean is required">
+					<span class="label-input100">Concavity Mean</span>
+					<input class="input100" type="text" name="concavity_mean" placeholder="Enter Concavity Mean">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate="Concave Point Mean is required">
+					<span class="label-input100">Concave Point Mean</span>
+					<input class="input100" type="text" name="concave points_mean" placeholder="Enter Concave Point Mean">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate="Symmetry Mean is required">
+					<span class="label-input100">Symmetry Mean</span>
+					<input class="input100" type="text" name="symmetry_mean" placeholder="Enter Symmetry Mean">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate="Fractal Dimension Mean is required">
+					<span class="label-input100">Fractal Dimension Mean</span>
+					<input class="input100" type="text" name="fractal_dimension_mean" placeholder="Enter Fractal Dimension Mean">
+					<span class="focus-input100"></span>
+				</div>
+
+
+
+				<div class="wrap-input100 validate-input" data-validate="Radius SE is required">
+					<span class="label-input100">Radius SE</span>
+					<input class="input100" type="text" name="radius_se" placeholder="Enter Radius SE">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate="Texture SE is required">
+					<span class="label-input100">Texture SE</span>
+					<input class="input100" type="text" name="texture_se" placeholder="Enter Texture SE">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate="Perimeter SE is required">
+					<span class="label-input100">Perimeter SE</span>
+					<input class="input100" type="text" name="perimeter_se" placeholder="Enter Perimeter SE">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate="Area SE is required">
+					<span class="label-input100">Area SE</span>
+					<input class="input100" type="text" name="area_se" placeholder="Enter Area SE">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate="Smoothness SE is required">
+					<span class="label-input100">Smoothness SE</span>
+					<input class="input100" type="text" name="smoothness_se" placeholder="Enter Smoothness SE">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate="Compactness SE is required">
+					<span class="label-input100">Compactness SE</span>
+					<input class="input100" type="text" name="compactness_se" placeholder="Enter Compactness SE">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate="Concavity SE is required">
+					<span class="label-input100">Concavity SE</span>
+					<input class="input100" type="text" name="concavity_se" placeholder="Enter Concavity SE">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate="Concave Point SE is required">
+					<span class="label-input100">Concave Point SE</span>
+					<input class="input100" type="text" name="concave points_se" placeholder="Enter Concave Point SE">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate="Symmetry SE is required">
+					<span class="label-input100">Symmetry SE</span>
+					<input class="input100" type="text" name="symmetry_se" placeholder="Enter Symmetry SE">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate="Fractal Dimension SE is required">
+					<span class="label-input100">Fractal Dimension SE</span>
+					<input class="input100" type="text" name="fractal_dimension_se" placeholder="Enter Fractal Dimension SE">
+					<span class="focus-input100"></span>
+				</div>
+
+
+
+				<div class="wrap-input100 validate-input" data-validate="Radius Worst is required">
+					<span class="label-input100">Radius Worst</span>
+					<input class="input100" type="text" name="radius_worst" placeholder="Enter Radius Worst">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate="Texture Worst is required">
+					<span class="label-input100">Texture Worst</span>
+					<input class="input100" type="text" name="texture_worst" placeholder="Enter Texture Worst">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate="Perimeter Worst is required">
+					<span class="label-input100">Perimeter Worst</span>
+					<input class="input100" type="text" name="perimeter_worst" placeholder="Enter Perimeter Worst">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate="Area Worst is required">
+					<span class="label-input100">Area Worst</span>
+					<input class="input100" type="text" name="area_worst" placeholder="Enter Area Worst">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate="Smoothness Worst is required">
+					<span class="label-input100">Smoothness Worst</span>
+					<input class="input100" type="text" name="smoothness_worst" placeholder="Enter Smoothness Worst">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate="Compactness Worst is required">
+					<span class="label-input100">Compactness Worst</span>
+					<input class="input100" type="text" name="compactness_worst" placeholder="Enter Compactness Worst">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate="Concavity Worst is required">
+					<span class="label-input100">Concavity Worst</span>
+					<input class="input100" type="text" name="concavity_worst" placeholder="Enter Concavity Worst">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate="Concave Point Worst is required">
+					<span class="label-input100">Concave Point Worst</span>
+					<input class="input100" type="text" name="concave points_worst" placeholder="Enter Concave Point Worst">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate="Symmetry Worst is required">
+					<span class="label-input100">Symmetry Worst</span>
+					<input class="input100" type="text" name="symmetry_worst" placeholder="Enter Symmetry Worst">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate="Fractal Dimension Worst is required">
+					<span class="label-input100">Fractal Dimension Worst</span>
+					<input class="input100" type="text" name="fractal_dimension_worst" placeholder="Enter Fractal Dimension Worst">
+					<span class="focus-input100"></span>
+        </div>
         
-        <b>Radius Worst : </b><input type="text" name="radius_worst" placeholder="Radius Worst" required="required" /></br>
-        <b>Texture Worst : </b><input type="text" name="texture_worst" placeholder="Radius Worst" required="required" /></br>
-        <b>Perimeter Worst : </b><input type="text" name="perimeter_worst" placeholder="Perimeter Worst" required="required" /></br>
-        <b>Area Worst : </b><input type="text" name="area_worst" placeholder="Area Worst" required="required" /></br>
-        <b>Smoothness Worst : </b><input type="text" name="smoothness_worst" placeholder="Smoothness Worst" required="required" /></br>
-        <b>Compactness Worst : </b><input type="text" name="compactness_worst" placeholder="Compactness Worst" required="required" /></br>
-        <b>Concavity Worst : </b><input type="text" name="concavity_worst" placeholder="Concavity Worst" required="required" /></br>
-        <b>Concave Point Worst : </b><input type="text" name="concave points_worst" placeholder="Concave Points Worst" required="required" /></br>
-        <b>Symmetry Worst : </b><input type="text" name="symmetry_worst" placeholder="Symmetry Worst" required="required" /></br>
-        <b>Fractal Dimension Worst : </b><input type="text" name="fractal_dimension_worst" placeholder="Fractal Dimension Worst" required="required" /></br>
+        <div class="container-contact100-form-btn">
+					<div class="wrap-contact100-form-btn">
+						<div class="contact100-form-bgbtn"></div>
+						<button class="contact100-form-btn" type = "submit">
+							<span>
+								Predict
+								<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+							</span>
+						</button>
+					</div>
+				</div>
 
-        
+				
+			</form>
+		</div>
+	</div>
 
-        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
-    </form>
 
-   <br>
-   <br>
-   {{ prediction_text }}
 
- </div>
+	<div id="dropDownSelect1"></div>
 
+<!--===============================================================================================-->
+	<script src="{{ url_for('static', filename='styles/vendor/jquery/jquery-3.2.1.min.js') }}"></script>
+<!--===============================================================================================-->
+	<script src="{{ url_for('static', filename='styles/vendor/animsition/js/animsition.min.js') }}"></script>
+<!--===============================================================================================-->
+	<script src="{{ url_for('static', filename='styles/vendor/bootstrap/js/popper.js') }}"></script>
+	<script src="{{ url_for('static', filename='styles/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+<!--===============================================================================================-->
+	<script src="{{ url_for('static', filename='styles/vendor/select2/select2.min.js') }}"></script>
+	<script>
+		$(".selection-2").select2({
+			minimumResultsForSearch: 20,
+			dropdownParent: $('#dropDownSelect1')
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="{{ url_for('static', filename='styles/vendor/daterangepicker/moment.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='styles/vendor/daterangepicker/daterangepicker.js') }}"></script>
+<!--===============================================================================================-->
+	<script src="{{ url_for('static', filename='styles/vendor/countdowntime/countdowntime.js') }}"></script>
+<!--===============================================================================================-->
+	<script src="{{ url_for('static', filename='styles/js/main.js') }}"></script>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-23581568-13');
+</script>
 
 </body>
 </html>
