@@ -9,13 +9,13 @@ X_pca = pickle.load(open('model/X_pca.pickle', 'rb'))
 X_std_model = pickle.load(open('model/X_std_model.pickle', 'rb'))
 
 def data_prediction(data):
-    print(np.array(data).reshape(1,-1).shape)
+    # print(np.array(data).reshape(1,-1).shape)
     X_std = X_std_model.transform(np.array(data).reshape(1,-1))
-    print("Shape of std", X_std.shape)
+    # print("Shape of std", X_std.shape)
     X_re = X_std.dot(X_pca)
-    print("Shape of X_re", X_re.shape)
+    # print("Shape of X_re", X_re.shape)
     y_pred = rf_model.predict(X_re)
-    print("prediction : ", y_pred)
+    # print("prediction : ", y_pred)
     if y_pred[0] == 0:
         return "Benign"
     else:
